@@ -13,5 +13,6 @@ public interface FuncionarioDomainService {
 	FuncionarioResponse cadastrar(FuncionarioRequest request);
 	FuncionarioResponse consultarPorId(UUID id);
 	List<FuncionarioResponse> consultar();
+	List<FuncionarioResponse> consultarPorEmpresa(UUID id);
 	AutenticarFuncionarioResponse autenticar(AutenticarFuncionarioRequest request);
 }

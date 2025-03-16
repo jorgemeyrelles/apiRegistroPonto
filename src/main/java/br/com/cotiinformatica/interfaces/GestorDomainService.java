@@ -1,5 +1,6 @@
 package br.com.cotiinformatica.interfaces;
 
+import java.util.List;
 import java.util.UUID;
 
 import br.com.cotiinformatica.dtos.AutenticarGestorRequest;
@@ -11,5 +12,6 @@ public interface GestorDomainService {
 
 	GestorResponse cadastrar(GestorRequest request);
 	GestorResponse consultarPorId(UUID id);
+	List<GestorResponse> consultarPorEmpresa(UUID id);
 	AutenticarGestorResponse autenticar(AutenticarGestorRequest request);
 }

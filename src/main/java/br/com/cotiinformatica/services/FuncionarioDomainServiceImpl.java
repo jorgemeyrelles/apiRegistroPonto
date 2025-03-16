@@ -1,5 +1,6 @@
 package br.com.cotiinformatica.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -40,31 +41,57 @@ public class FuncionarioDomainServiceImpl implements FuncionarioDomainService {
 	public FuncionarioResponse consultarPorId(UUID id) {
 
 		Funcionario funcionario = funcionarioRepository.findById(id)
-				.orElseThrow(() -> new IllegalArgumentException("O ID informado não foi encontrado."));
+				.orElseThrow(() -> new IllegalArgumentException(
+						"O ID informado não foi encontrado."));
 
 		return modelMapper.map(funcionario, FuncionarioResponse.class);
 	}
 
 	@Override
 	public List<FuncionarioResponse> consultar() {
-		
+
 		List<Funcionario> funcionarios = funcionarioRepository.findAll();
-		
-		return modelMapper.map
-				(funcionarios, new TypeToken
-						<List<FuncionarioResponse>>() {}.getType());
+
+		return modelMapper.map(funcionarios,
+				new TypeToken<List<FuncionarioResponse>>() {
+				}.getType());
 	}
 
 	@Override
-	public AutenticarFuncionarioResponse autenticar(AutenticarFuncionarioRequest request) {
-		
-		Funcionario funcionario = funcionarioRepository.findByEmailAndSenha(request.getEmail(), request.getSenha());
-		
+	public AutenticarFuncionarioResponse autenticar(
+			AutenticarFuncionarioRequest request) {
+
+		Funcionario funcionario = funcionarioRepository
+				.findByEmailAndSenha(request.getEmail(), request.getSenha());
+
 		if (funcionario != null) {
-			return modelMapper.map(funcionario, AutenticarFuncionarioResponse.class);
+			return modelMapper.map(funcionario,
+					AutenticarFuncionarioResponse.class);
 		} else {
-			throw new IllegalArgumentException("Email ou senha informados estão inválidos. Por favor, tente novamente.");
+			throw new IllegalArgumentException(
+					"Email ou senha informados estão inválidos. Por favor, tente novamente.");
 		}
+	}
+
+	@Override
+	public List<FuncionarioResponse> consultarPorEmpresa(UUID id) {
+		List<Funcionario> funcionarios = funcionarioRepository
+				.findByEmpresa(id);
+
+		List<FuncionarioResponse> funcionariosResponse = new ArrayList<>();
+
+		if (funcionarios != null && !funcionarios.isEmpty()) {
+			for (Funcionario funcionario : funcionarios) {
+				FuncionarioResponse response = new FuncionarioResponse();
+				response.setId(funcionario.getId());
+				response.setEmail(funcionario.getEmail());
+				response.setNome(funcionario.getNome());
+				response.setEmpresa(funcionario.getEmpresa());
+				
+				funcionariosResponse.add(response);
+			}
+		}
+		return funcionariosResponse;
 	}
 
 }

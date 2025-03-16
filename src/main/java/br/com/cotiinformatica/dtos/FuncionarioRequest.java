@@ -1,5 +1,6 @@
 package br.com.cotiinformatica.dtos;
 
+import br.com.cotiinformatica.entities.Empresa;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
@@ -21,4 +22,7 @@ public class FuncionarioRequest {
 	@Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{8,}$", 
 	message = "Por favor, informe a senha com letras minúsculas, números, símbolos e pelo menos 8 caracteres.")
 	private String senha;
+	
+	@NotEmpty(message = "Selecione a empresa")
+	private Empresa empresa;
 }

@@ -134,4 +134,10 @@ public class HistoricoDomainServiceImpl implements HistoricoDomainService {
 		return response;
 	}
 
+	@Override
+	public List<HistoricoResponse> consultarPorEmpresa(UUID id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -5,6 +5,8 @@ import java.util.UUID;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -26,4 +28,8 @@ public class Gestor {
 	
 	@Column(name = "senha", length = 100, nullable = false)
 	private String senha;
+	
+	@ManyToOne
+	@JoinColumn(name = "empresa_id")
+	private Empresa empresa;
 }

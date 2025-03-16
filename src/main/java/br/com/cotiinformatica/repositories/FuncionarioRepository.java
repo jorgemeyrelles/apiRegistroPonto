@@ -1,5 +1,6 @@
 package br.com.cotiinformatica.repositories;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,4 +15,7 @@ public interface FuncionarioRepository extends JpaRepository<Funcionario, UUID> 
 
 	@Query("select fu from Funcionario fu where fu.email = :pEmail and fu.senha = :pSenha")
 	Funcionario findByEmailAndSenha(@Param("pEmail") String email, @Param("pSenha") String senha);
+
+	@Query("select fu from Funcionario fu where fu.empresa_id = :id")
+	List<Funcionario> findByEmpresa(@Param("id") UUID id);
 }

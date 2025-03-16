@@ -10,6 +10,7 @@ public interface HistoricoDomainService {
 
 	HistoricoResponse cadastrar(HistoricoRequest request);
 	List<HistoricoResponse> consultar();
+	List<HistoricoResponse> consultarPorEmpresa(UUID id);
 	List<HistoricoResponse> consultarPorIdDeFuncionario(UUID funcionario_id);
 	List<HistoricoResponse> consultarPorIdDeFuncionarioHoje(UUID funcionario_id);
 }

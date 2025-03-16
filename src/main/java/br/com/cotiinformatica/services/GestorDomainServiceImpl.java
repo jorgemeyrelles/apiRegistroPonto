@@ -1,5 +1,6 @@
 package br.com.cotiinformatica.services;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.modelmapper.ModelMapper;
@@ -55,6 +56,12 @@ public class GestorDomainServiceImpl implements GestorDomainService {
 			throw new IllegalArgumentException(
 					"Email ou senha informados estão inválidos. Por favor, tente novamente.");
 		}
+	}
+
+	@Override
+	public List<GestorResponse> consultarPorEmpresa(UUID id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -3,6 +3,7 @@ package br.com.cotiinformatica.dtos;
 import java.util.Date;
 import java.util.UUID;
 
+import br.com.cotiinformatica.entities.Empresa;
 import lombok.Data;
 
 @Data
@@ -15,4 +16,5 @@ public class HistoricoResponse {
 	private String operacao;
 	private String latitude;
 	private String longitude;
+	private Empresa empresa;
 }
